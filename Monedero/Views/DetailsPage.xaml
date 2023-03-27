@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Monedero.Views.DetailsPage"
+             Title="DetailsPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid  Margin="0,0" BackgroundColor="{x:StaticResource Primary}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!--HEADER-->
+                <StackLayout Grid.Row="0">
+                 
+                    <Image Source="Smart.png"  HorizontalOptions="Center" VerticalOptions="Center" />
+                </StackLayout>
+                <!--HEADER END-->
+
+                <!--BODY-->
+                <StackLayout Grid.Row="1" Padding="10">
+                    <StackLayout Orientation="Horizontal">
+
+                        <Label Text="No tarjeta:" FontSize="Large" 
+                           TextColor="{StaticResource ColorFooterNormal}" />
+
+                        <Label Text="{Binding CardNumber,Mode=TwoWay}" 
+                            FontSize="Large" TextColor="{StaticResource ColorLight}" 
+                           HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                </StackLayout>
+
+
+                <StackLayout Grid.Row="2" BackgroundColor="{StaticResource ColorFooterNormal}" HeightRequest="60">
+
+                    <Label  Text="Saldo"
+                        Padding="5"
+                        FontSize="30" 
+                        TextColor="{StaticResource ColorDark}" 
+                        HorizontalOptions="CenterAndExpand" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="3" >
+
+                    <Label  Text="{Binding Salary,StringFormat='${0:0.00}'}" 
+                        Padding="40"
+                        FontSize="50" 
+                        TextColor="{StaticResource ColorLight}" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <StackLayout Orientation="Horizontal" Padding="10">
+
+                        <Label Text="Última actulización:" FontSize="Large" 
+                           TextColor="{StaticResource ColorFooterNormal}" />
+
+                        <Label Text="{Binding  LastTransaction,StringFormat='{0:dd/MM/yyyy}'}" 
+                           FontSize="Large" TextColor="{StaticResource ColorLight}" 
+                           HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                </StackLayout>
+                <!--BODY-->
+
+
+                <!--FOOTER-->
+                <StackLayout Grid.Row="4" Margin="8,20" 
+                         VerticalOptions="End">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="25" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Style="{x:StaticResource UpdateButton}" Command="{Binding SubmitCommand}" />
+                        <Button Grid.Column="2" Style="{x:StaticResource ChangeButton}" Command="{Binding GoBackCommand}" />
+
+                    </Grid>
+                </StackLayout>
+
+                <!--FOOTER END-->
+
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Monedero.Views.HomePage"
+             Visual="Default"
+             Title="HomePage">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid  Margin="0,0" BackgroundColor="{x:StaticResource Primary}">
+
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+
+               <!--HEADER-->
+                <StackLayout>
+                   
+
+                    <Image Source="smart.png"   />
+                </StackLayout>
+                 <!--HEADER END-->
+
+                <!--FIELDS-->
+                <Grid Grid.Row="1" Margin="8,60">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Row="0" Spacing="5">
+
+                        <Grid Margin="0,5">
+                            <Frame  BackgroundColor="#ffffff" CornerRadius="5" />
+                            <Entry 
+                                Placeholder="Numero de Tarjeta"
+                                BackgroundColor="Transparent"
+                                TextColor="DarkGray" 
+                                HorizontalTextAlignment="Center" 
+                                PlaceholderColor="DarkGray" 
+                                ClearButtonVisibility="WhileEditing"
+                                FontAutoScalingEnabled="False" >
+
+                            </Entry>
+
+                        </Grid>
+
+                        <Grid Margin="0,5">
+                            <Frame Opacity="0.9" BackgroundColor="#ffffff" CornerRadius="5" />
+                            <Entry 
+                                Placeholder="Apellido"
+                                BackgroundColor="Transparent"
+                                TextColor="DarkGray" 
+                                HorizontalTextAlignment="Center" 
+                                PlaceholderColor="DarkGray" 
+                                ClearButtonVisibility="WhileEditing">
+
+                            </Entry>
+
+                        </Grid>
+
+                    </StackLayout>
+                </Grid>
+                   <!--FIELDS END-->
+
+                <StackLayout Grid.Row="2" Margin="8,20">
+
+                    <Button Text="INGRESAR" Style="{x:StaticResource StartButton}"  />
+
+                </StackLayout>
+                <!--SEND BUTTON END-->
+
+
+
+
+                <!--FOOTER-->
+                <StackLayout Grid.Row="3"
+                         BackgroundColor="{StaticResource ColorFooterNormal}" 
+                         HeightRequest="60" 
+                         VerticalOptions="End">
+
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Padding="5">
+                        <Label Text="Promotora de Negocios S-Mart, S. De R.L De C.V."  TextColor="{StaticResource ColorFooterTextNormal}" />
+                        <Label Text="www.supermercadossmart.com"  HorizontalOptions="Center"  TextColor="{StaticResource ColorFooterTextNormal}"/>
+                    </StackLayout>
+
+
+                </StackLayout>
+                <!--FOOTER END-->
+
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+      
+</ContentPage>
