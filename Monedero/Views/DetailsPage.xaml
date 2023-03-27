@@ -1,90 +1,127 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:viewModels="clr-namespace:Monedero.ViewModels;assembly=Monedero"
+           
              x:Class="Monedero.Views.DetailsPage"
              Title="DetailsPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:DetailsViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <ScrollView>
-            <Grid  Margin="0,0" BackgroundColor="{x:StaticResource Primary}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <!--HEADER-->
-                <StackLayout Grid.Row="0">
-                 
-                    <Image Source="Smart.png"  HorizontalOptions="Center" VerticalOptions="Center" />
-                </StackLayout>
-                <!--HEADER END-->
 
-                <!--BODY-->
-                <StackLayout Grid.Row="1" Padding="10">
-                    <StackLayout Orientation="Horizontal">
+            <AbsoluteLayout>
 
-                        <Label Text="No tarjeta:" FontSize="Large" 
+
+                <Grid   BackgroundColor="{x:StaticResource Primary}"
+                        AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <!--HEADER-->
+                    <StackLayout Grid.Row="0">
+
+                        <Image Source="Smart.png"  HorizontalOptions="Center" VerticalOptions="Center" />
+                    </StackLayout>
+                    <!--HEADER END-->
+
+                    <!--BODY-->
+                    <StackLayout Grid.Row="1" Padding="10">
+                        <StackLayout Orientation="Horizontal">
+
+                            <Label Text="No tarjeta:" FontSize="Large" 
                            TextColor="{StaticResource ColorFooterNormal}" />
 
-                        <Label Text="{Binding CardNumber,Mode=TwoWay}" 
+                            <Label Text="{Binding CardNumber,Mode=TwoWay}" 
                             FontSize="Large" TextColor="{StaticResource ColorLight}" 
                            HorizontalOptions="EndAndExpand" />
+                        </StackLayout>
                     </StackLayout>
-                </StackLayout>
 
 
-                <StackLayout Grid.Row="2" BackgroundColor="{StaticResource ColorFooterNormal}" HeightRequest="60">
+                    <StackLayout Grid.Row="2" BackgroundColor="{StaticResource ColorFooterNormal}" HeightRequest="60">
 
-                    <Label  Text="Saldo"
+                        <Label  Text="Saldo"
                         Padding="5"
                         FontSize="30" 
                         TextColor="{StaticResource ColorDark}" 
                         HorizontalOptions="CenterAndExpand" />
-                </StackLayout>
+                    </StackLayout>
 
-                <StackLayout Grid.Row="3" >
+                    <StackLayout Grid.Row="3" >
 
-                    <Label  Text="{Binding Salary,StringFormat='${0:0.00}'}" 
+                        <Label  Text="{Binding Salary,StringFormat='${0:0.00}'}" 
                         Padding="40"
                         FontSize="50" 
                         TextColor="{StaticResource ColorLight}" 
                         HorizontalOptions="CenterAndExpand" />
 
-                    <StackLayout Orientation="Horizontal" Padding="10">
+                        <StackLayout Orientation="Horizontal" Padding="10">
 
-                        <Label Text="Última actulización:" FontSize="Large" 
+                            <Label Text="Última actulización:" FontSize="Large" 
                            TextColor="{StaticResource ColorFooterNormal}" />
 
-                        <Label Text="{Binding  LastTransaction,StringFormat='{0:dd/MM/yyyy}'}" 
+                            <Label Text="{Binding  LastTransaction,StringFormat='{0:dd/MM/yyyy}'}" 
                            FontSize="Large" TextColor="{StaticResource ColorLight}" 
                            HorizontalOptions="EndAndExpand" />
+                        </StackLayout>
                     </StackLayout>
-                </StackLayout>
-                <!--BODY-->
+                    <!--BODY-->
 
 
-                <!--FOOTER-->
-                <StackLayout Grid.Row="4" Margin="8,20" 
+                    <!--FOOTER-->
+                    <StackLayout Grid.Row="4" Margin="8,20" 
                          VerticalOptions="End">
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="25" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="25" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" Style="{x:StaticResource UpdateButton}" Command="{Binding SubmitCommand}" />
-                        <Button Grid.Column="2" Style="{x:StaticResource ChangeButton}" Command="{Binding GoBackCommand}" />
+                            <Button Grid.Column="0" Style="{x:StaticResource UpdateButton}" Command="{Binding SubmitCommand}" />
+                            <Button Grid.Column="2" Style="{x:StaticResource ChangeButton}" Command="{Binding GoBackCommand}" />
 
-                    </Grid>
-                </StackLayout>
+                        </Grid>
+                    </StackLayout>
 
-                <!--FOOTER END-->
+                    <!--FOOTER END-->
 
 
-            </Grid>
+                </Grid>
+
+                <!-- Grid con el ActivityIndicator -->
+                <Grid x:Name="loadingGrid"
+              BackgroundColor="Gray"
+              Opacity="0.5"
+              IsVisible="{Binding IsBusy}"
+              AbsoluteLayout.LayoutFlags="All"
+              AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    <StackLayout
+            Padding="30"
+            BackgroundColor="Black"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+                        <ActivityIndicator IsRunning="True" Color="White" />
+                        <Label
+                FontAttributes="Bold"
+                Text="Loading..."
+                TextColor="White" />
+                    </StackLayout>
+                </Grid>
+
+
+            </AbsoluteLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
