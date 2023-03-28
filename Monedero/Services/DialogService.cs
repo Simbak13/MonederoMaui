@@ -19,5 +19,10 @@ namespace Monedero.Services
         {
             await Application.Current.MainPage.Navigation.PopModalAsync();
         }
+
+        public async Task<bool> DisplayAlertCofirm(string title, string message, string accepted, string cancel)
+        {
+           return await Application.Current.MainPage.DisplayAlert(title, message, accepted, cancel);
+        }
     }
 }
