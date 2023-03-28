@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Monedero.Controls.ToolBarCustom"
+             x:Name="ThisView"
+             NavigationPage.HasNavigationBar="False">
+    
+    <ContentView.Content>
+        <StackLayout>
+            <Grid
+            x:Name="GridContainer"
+            BackgroundColor="{x:StaticResource ColorPrimaryNormal}"
+            VerticalOptions="StartAndExpand"         
+            Padding="10"
+            RowSpacing="0"
+            ColumnDefinitions="*,50,50,auto">
+
+                <Label 
+                   x:Name="LabelTitle"
+                   Grid.Column="0"
+                   VerticalOptions="Center"
+                    TextColor="#ffffff"
+                    BindingContext="{Reference ThisView}"
+                   Text="{Binding ToolBarTitle}">
+                    <Label.FontSize>
+                        <OnIdiom x:TypeArguments="x:Double">
+                            <OnIdiom.Phone>18</OnIdiom.Phone>
+                            <OnIdiom.Tablet>20</OnIdiom.Tablet>
+                            <OnIdiom.TV>36</OnIdiom.TV>
+                        </OnIdiom>
+                    </Label.FontSize>
+                </Label>
+                <Path 
+                    Grid.Column="3"
+                     Style="{x:StaticResource InfoIcon}"
+                    Fill="#ffffff"
+                    Stroke="#ffffff"
+                   VerticalOptions="Center"
+                    HorizontalOptions="EndAndExpand">
+                    <Path.GestureRecognizers>
+                        <TapGestureRecognizer  Tapped="OnShowDialogClicked"/>
+                    </Path.GestureRecognizers>
+                    <Path.HeightRequest>
+                        <OnIdiom x:TypeArguments="x:Double">
+                            <OnIdiom.Phone>30</OnIdiom.Phone>
+                            <OnIdiom.Tablet>90</OnIdiom.Tablet>
+                            <OnIdiom.TV>80</OnIdiom.TV>
+                        </OnIdiom>
+                    </Path.HeightRequest>
+
+                    <Path.WidthRequest>
+                        <OnIdiom x:TypeArguments="x:Double">
+                            <OnIdiom.Phone>30</OnIdiom.Phone>
+                            <OnIdiom.Tablet>90</OnIdiom.Tablet>
+                            <OnIdiom.TV>80</OnIdiom.TV>
+                        </OnIdiom>
+                    </Path.WidthRequest>
+                </Path>
+
+            </Grid>
+            <BoxView HeightRequest="1" Color="{x:StaticResource ColorDark}"/>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

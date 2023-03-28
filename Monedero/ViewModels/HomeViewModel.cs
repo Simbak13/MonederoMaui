@@ -1,4 +1,4 @@
-﻿using Google.Android.Material.Dialog;
+﻿
 using Monedero.Helpers;
 using Monedero.Interfaces;
 using Monedero.Models;
@@ -21,9 +21,11 @@ namespace Monedero.ViewModels
         public string LastName { get; set; }
 
         public bool IsBusy { get; set; }
-        public bool IsEnable{ get; set; }
+        public bool IsEnable { get; set; }
 
         public ICommand SubmitCommand { get; private set; }
+
+        public ICommand PopUpCommand { get; private set; }
 
         private readonly IDialogService _dialogService;
         private readonly IApiService _apiService;
@@ -45,11 +47,20 @@ namespace Monedero.ViewModels
 
             SubmitCommand = new Command
            (async () => await GetCardSalayAsync());
-          
+
+            PopUpCommand = new Command
+          (async () => await PopUpAsync());
+
+        }
+
+        private async Task PopUpAsync()
+        {
+
+          await MauiPopup.PopupAction.DisplayPopup(new PopupPage());
         }
         private async Task GetCardSalayAsync()
         {
-            
+
 
             if (await ValidateFields()) return;
 
@@ -82,7 +93,7 @@ namespace Monedero.ViewModels
                 }
                 else
                 {
-                    await _dialogService.DisplayAlert( "Error 500", GlobalMessages.INTERNAL_SERVER_ERROR, "Salir");
+                    await _dialogService.DisplayAlert("Error 500", GlobalMessages.INTERNAL_SERVER_ERROR, "Salir");
                     IsBusy = false;
                     IsEnable = true;
                     return;
@@ -92,26 +103,26 @@ namespace Monedero.ViewModels
             {
                 if (ex.StatusCode == HttpStatusCode.NotFound)
                 {
-                    await _dialogService.DisplayAlert( "Alerta", GlobalMessages.NOT_FOUND, "Continuar");
+                    await _dialogService.DisplayAlert("Alerta", GlobalMessages.NOT_FOUND, "Continuar");
                 }
                 else if (ex.StatusCode == HttpStatusCode.BadRequest)
                 {
-                    await _dialogService.DisplayAlert( "Error 400", GlobalMessages.BAD_REQUEST, "Salir");
+                    await _dialogService.DisplayAlert("Error 400", GlobalMessages.BAD_REQUEST, "Salir");
                 }
                 else if (ex.StatusCode == HttpStatusCode.InternalServerError)
 
                 {
-                    await _dialogService.DisplayAlert( "Error 500", GlobalMessages.INTERNAL_SERVER_ERROR, "Salir");
+                    await _dialogService.DisplayAlert("Error 500", GlobalMessages.INTERNAL_SERVER_ERROR, "Salir");
                 }
                 else
                 {
-                    await _dialogService.DisplayAlert( "Error 500", GlobalMessages.INTERNAL_SERVER_ERROR, "Salir");
+                    await _dialogService.DisplayAlert("Error 500", GlobalMessages.INTERNAL_SERVER_ERROR, "Salir");
                 }
 
             }
             catch (Exception ex)
             {
-                await _dialogService.DisplayAlert( "Alerta", GlobalMessages.INTERNAL_SERVER_ERROR, "Continuar");
+                await _dialogService.DisplayAlert("Alerta", GlobalMessages.INTERNAL_SERVER_ERROR, "Continuar");
             }
             finally
             {
@@ -128,7 +139,7 @@ namespace Monedero.ViewModels
                 string.IsNullOrWhiteSpace(CardNumber))
             {
 
-                await _dialogService.DisplayAlert( "Alerta", "El número de tarjeta es requerido", "Continuar");
+                await _dialogService.DisplayAlert("Alerta", "El número de tarjeta es requerido", "Continuar");
                 return true;
             }
 
@@ -143,13 +154,13 @@ namespace Monedero.ViewModels
                 string.IsNullOrWhiteSpace(LastName))
             {
 
-                await _dialogService.DisplayAlert( "Alerta", "El Apellido es requerido", "Continuar");
+                await _dialogService.DisplayAlert("Alerta", "El Apellido es requerido", "Continuar");
                 return true;
             }
 
             if (LastName.Length < 3 || LastName.Length > 20)
             {
-                await _dialogService.DisplayAlert( "Alerta", "El Apellido debe tener al menos 3 caracteres", "Continuar");
+                await _dialogService.DisplayAlert("Alerta", "El Apellido debe tener al menos 3 caracteres", "Continuar");
                 return true;
             }
 
