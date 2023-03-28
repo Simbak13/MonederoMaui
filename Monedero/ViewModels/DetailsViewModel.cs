@@ -1,4 +1,5 @@
-﻿using Monedero.Helpers;
+﻿using CommunityToolkit.Maui.Alerts;
+using Monedero.Helpers;
 using Monedero.Interfaces;
 using Monedero.Models;
 using Monedero.Services;
@@ -95,8 +96,9 @@ namespace Monedero.ViewModels
                     string json = JsonConvert.SerializeObject(response);
                     Preferences.Set(GlobalKey.BALANCE, json);
                     await GetCurrenUser();
-                    //await MaterialDialog.Instance.SnackbarAsync(message: "Consulta generada con éxito.",
-                    //                        msDuration: MaterialSnackbar.DurationShort);
+
+                    var snack = Snackbar.Make("Consulta generada con éxito.");
+                   await snack.Show();
                 }
             }
             catch (ApiException ex)

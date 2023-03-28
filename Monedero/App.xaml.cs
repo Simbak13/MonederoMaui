@@ -1,4 +1,6 @@
-﻿using Monedero.Utils;
+﻿
+using Monedero.Helpers;
+using Monedero.Utils;
 using Monedero.Views;
 using System.Globalization;
 
@@ -15,6 +17,19 @@ public partial class App : Application
         //DependencyService.RegisterSingleton<IDialogService>(dialogService);
 
         //	MainPage = new AppShell();
+        Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(BorderLessEntry), (handler, view) =>
+        {
+#if __ANDROID__
+
+           handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
+
+#elif __IOS__
+
+            handler.PlatformView.BackgroundColor = UIKit.UIColor.Clear;
+            handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
+#endif
+
+        });
 
         var cultureInfo = new CultureInfo("es-MX");
         CultureInfo.DefaultThreadCurrentCulture = cultureInfo;

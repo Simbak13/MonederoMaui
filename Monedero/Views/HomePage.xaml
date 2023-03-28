@@ -77,6 +77,8 @@
                                 Text="{Binding LastName}"
                                 Placeholder="Apellido"
                                 BackgroundColor="Transparent"
+                               Margin="0"
+                                    
                                 TextColor="DarkGray" 
                                 HorizontalTextAlignment="Center" 
                                 PlaceholderColor="DarkGray" 
@@ -85,6 +87,7 @@
                                    Keyboard="Text" >
 
                                 </Entry>
+                               
 
                             </Grid>
 
