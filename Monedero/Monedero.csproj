@@ -33,6 +33,9 @@
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		
+		<!--<MauiIcon Include="Resources\AppIcon\icon.png" ForegroundFile="Resources\AppIcon\icon.png" Color="#512BD4" />-->
+
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\logo.png" Color="#0d4487" BaseSize="128,128" />
@@ -48,7 +51,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\icon.png" />
 	  <None Remove="Resources\Images\Smart.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\AppIcon\icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
