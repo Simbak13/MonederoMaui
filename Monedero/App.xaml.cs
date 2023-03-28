@@ -1,4 +1,5 @@
-﻿using Monedero.Views;
+﻿using Monedero.Utils;
+using Monedero.Views;
 using System.Globalization;
 
 namespace Monedero;
@@ -19,7 +20,18 @@ public partial class App : Application
         CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
         CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
+        if (Preferences.ContainsKey(GlobalKey.BALANCE))
+        {
 
-        MainPage = new HomePage();
+            MainPage = new DetailsPage();
+        }
+        else
+        {
+            MainPage = new HomePage();
+        }
+
+
+
+      //  MainPage = new HomePage();
 	}
 }

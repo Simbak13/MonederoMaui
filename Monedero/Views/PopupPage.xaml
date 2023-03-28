@@ -4,10 +4,129 @@
               xmlns:mauiPopup="clr-namespace:MauiPopup.Views;assembly=MauiPopup"
              x:Class="Monedero.Views.PopupPage"
              Title="PopupPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ContentPage.Content>
+
+        
+        <VerticalStackLayout 
+            BackgroundColor="{x:StaticResource ColorPrimaryNormal}"
+            Padding="0" >
+
+            <!--<Frame             
+                x:Name="FrameContainer"
+                Padding="0" CornerRadius="25" 
+                BackgroundColor="{StaticResource  ColorPrimaryNormal}">-->
+                <!--MAIN CONTAINER-->
+                <StackLayout >
+
+                    <!--TOP-->
+                    <StackLayout Orientation="Horizontal">
+
+                        <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer  />
+                            </Grid.GestureRecognizers>
+
+
+
+                            <Path x:Name="ImageFigure" 
+                              Style="{x:StaticResource FigureImage}"
+                               Stroke="#ffffff"
+                          Fill="#ffffff"
+                          HorizontalOptions="StartAndExpand" />
+
+
+                            <Path 
+                            Style="{x:StaticResource ShareIcon}" 
+                            Stroke="#0d4487"
+                          Fill="#0d4487"
+                          HeightRequest="30"
+                          WidthRequest="30"
+                            HorizontalOptions="Start"
+                            Margin="10" />
+
+
+
+                            <Label Text="Comparte esta aplicación"
+                                      Margin="45,15,10,10" FontAttributes="Bold" />
+                        </Grid>
+
+                        <Path Style="{x:StaticResource CloseIcon}"
+                          Margin="7"
+                          Stroke="#ffffff"
+                          Fill="#ffffff"
+                          HeightRequest="30"
+                          WidthRequest="30"
+                          HorizontalOptions="EndAndExpand"
+                          VerticalOptions="Start">
+                            <Path.GestureRecognizers>
+                                <TapGestureRecognizer  />
+                            </Path.GestureRecognizers>
+                        </Path>
+
+                    </StackLayout>
+                    <!--TOP END-->
+
+                    <!--CENTER-->
+
+                    <StackLayout Margin="10,20">
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer  />
+                        </StackLayout.GestureRecognizers>
+
+                        <Image Source="Logo.png" WidthRequest="200" HeightRequest="100" />
+
+                        <Label   Text="Monedero" 
+                                      HorizontalOptions="CenterAndExpand" TextColor="{StaticResource White}" />
+
+                        <Label Text="Versión 2.0"                                     
+                                    HorizontalOptions="CenterAndExpand" TextColor="{StaticResource White}" />
+
+                        <Label Text="www.supermercadossmart.com"                                     
+                                    HorizontalOptions="CenterAndExpand" TextColor="{StaticResource White}" />
+
+                        <Label Text="Aviso de privacidad"                                     
+                                    HorizontalOptions="CenterAndExpand" TextColor="{StaticResource White}" />
+
+                        <BoxView HeightRequest="1" Color="{x:StaticResource ColorLight}" HorizontalOptions="FillAndExpand" Margin="1"/>
+                    </StackLayout>
+                    <!--CENTER  END-->
+
+                    <!--BOTTOM-->
+                    <StackLayout Orientation="Horizontal" Margin="5" Padding="10">
+
+
+                        <Label Text="Desarrollado por : GRUPO S-MART"                                     
+                                    HorizontalOptions="StartAndExpand" TextColor="{StaticResource White}" />
+
+                        <Path Style="{x:StaticResource MailIcon}"
+                          Margin="0,0,15,0"
+                           Stroke="#ffffff"
+                          Fill="#ffffff"
+                          HeightRequest="30"
+                          WidthRequest="30"
+                          HorizontalOptions="End"
+                          VerticalOptions="Start">
+                            <Path.GestureRecognizers>
+                                <TapGestureRecognizer   />
+                            </Path.GestureRecognizers>
+
+                        </Path>
+
+                    </StackLayout>
+                    <!--BOTTOM END-->
+
+
+
+                </StackLayout>
+
+            <!--</Frame>-->
+
+        </VerticalStackLayout>
+       
+    </ContentPage.Content>
 </mauiPopup:BasePopupPage>
