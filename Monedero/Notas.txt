@@ -1,0 +1,18 @@
+﻿
+
+
+<!--ANDROID RELEASE-->
+	<PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningKeyStore>monedero.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyAlias>key</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass></AndroidSigningKeyPass>
+		<AndroidSigningStorePass></AndroidSigningStorePass>
+	</PropertyGroup>
+	
+
+	Para genear la llave
+	keytool -genkey -v -keystore monedero.keystore -alias key -keyalg RSA -keysize 2048 -validity 3000
+
+para generar un APK
+dotnet publish -f:net7.0-android -c:Release /p:AndroidSigningKeyPass=mypassword /p:AndroidSigningStorePass=mypassword
