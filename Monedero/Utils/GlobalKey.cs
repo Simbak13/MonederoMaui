@@ -8,8 +8,8 @@
         public static readonly string HOME = "HomePage";
         public static readonly string DETAILS = "DetailsPage";
         public static readonly string BALANCE = "Balace";
-        // public static readonly string HOST = "https://monedero.tiendassmart.com:40499/index.php";//Test
-        public static readonly string HOST = "https://monedero.tiendassmart.com:40500/index.php";//Production
+        public static readonly string HOST = "https://monedero.tiendassmart.com:40499/index.php";//Test
+       // public static readonly string HOST = "https://monedero.tiendassmart.com:40500/index.php";//Production
         public const string END_POINT_GET_BALANCE = "/monederos/{no_tarjeta}/{apellido}";
 
     }

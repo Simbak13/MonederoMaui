@@ -32,7 +32,7 @@ namespace Monedero.ViewModels
         public DetailsViewModel()
         {
             _dialogService = new DialogService();
-            IsEnable = true;
+      
 
             //TODO Cambiar por la url con certificado
             //Esta es la implementacion correcta
@@ -93,12 +93,16 @@ namespace Monedero.ViewModels
 
                 if (response != null)
                 {
+                    IsBusy = false;
+                    IsEnable = true;
+
                     string json = JsonConvert.SerializeObject(response);
                     Preferences.Set(GlobalKey.BALANCE, json);
                     await GetCurrenUser();
 
                     var snack = Snackbar.Make("Consulta generada con éxito.");
                    await snack.Show();
+
                 }
             }
             catch (ApiException ex)
