@@ -59,17 +59,24 @@
 
 
                         <Label Text="Comparte esta aplicación"
-                                      Margin="45,15,0,10" FontAttributes="Bold" >
+                                      Margin="45,15,10,10" FontAttributes="Bold">
+
                             <Label.FontSize>
-                                <OnIdiom x:TypeArguments="x:Double">
-                                    <OnIdiom.Phone>10</OnIdiom.Phone>
-                                    <OnIdiom.Tablet>14</OnIdiom.Tablet>
-                                    <OnIdiom.TV>16</OnIdiom.TV>
-                                </OnIdiom>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="Android" Value="14" />
+                                    <On Platform="iOS" Value="12" />
+                                </OnPlatform>
                             </Label.FontSize>
 
+                            <Label.TextColor>
+                                <OnPlatform x:TypeArguments="Color">
+                                    <On Platform="Android" Value="Black" />
+                                    <On Platform="iOS" Value="Blue" />
+                                </OnPlatform>
+                            </Label.TextColor>
                         </Label>
-                        </Grid>
+                            
+                    </Grid>
 
                         <Path Style="{x:StaticResource CloseIcon}"
                           Margin="7"

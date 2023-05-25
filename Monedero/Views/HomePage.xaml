@@ -34,7 +34,14 @@
 
                     <!--HEADER-->
                     <StackLayout>
-
+                        <StackLayout.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="Android" Value="0" />
+                                <On Platform="iOS" Value="0, 24, 0, 0" />
+                                <!-- Cambia el valor de Top a 24 en iOS -->
+                            </OnPlatform>
+                        </StackLayout.Margin>
+                        
                         <customToolBar:ToolBarCustom ToolBarTitle="Smart Monedero" />
                         <Image Source="smart.png"   />
                     </StackLayout>
